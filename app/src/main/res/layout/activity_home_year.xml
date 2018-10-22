@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home"
+    android:background="@color/BackGround_color">
+
+    <LinearLayout
+        android:layout_marginBottom="56dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar_month"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/card_background"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:textAlignment="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Transactions"
+                            android:textColor="#000"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:weightSum="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:clickable="false"
+                        android:id="@+id/year_text_container"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/home_year_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="right"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/save_button2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:clickable="true"
+                            android:transitionName="floating"
+                            app:elevation="50dp"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/year_list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+    <include layout="@layout/pie_chart_bottom_sheet"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MTracker</string>
+
+    <string name="add_vector_path" translatable="false">M50 20,L50 80,M20 50,L80 50</string>
+    <string name="remove_vector_path" translatable="false">M60 25,L75 45,M25 75,L60 25</string>
+
+    <string name="facebook_app_id">688885168142608</string>
+    <string name="fb_login_protocol_scheme">fb688885168142608</string>
+
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">6fb8d65064738634c12da436d7ca97a2</string>
+    <string name="phone_login">Phone Login</string>
+    <string name="profile_name_hint">Name</string>
+    <string name="profile_number_hint">Phone number</string>
+    <string name="profile_text_currency">Currency :</string>
+    <string name="Rs">\u20B9</string>
+    <string name="text_expense">Expense</string>
+    <string name="text_income">Income</string>
+    <string name="expenditure_amount">Amount</string>
+    <string name="add_category_title">Add Category</string>
+    <string name="home_month_tv_income">Income</string>
+    <string name="home_month_tv_expense">Expense</string>
+    <string name="home_month_tv_balance">Balance</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="currency_warning">*Currency Conversion will not be done. Your previous data will be kept seperately</string>
+    <!--<string name="ak_login_protocol_scheme">ak5d51114a7776fae856423be35c26cd32</string>-->
+
+</resources>

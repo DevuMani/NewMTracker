@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.dream.mtracker"
+        minSdkVersion 23
+        targetSdkVersion 27
+        manifestPlaceholders = [
+                onesignal_app_id               : 'c36117a5-0d6d-4124-8f97-eb562e5df917',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.media:media:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth:16.0.4'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+
+    //Google
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
+    //Facebook
+    implementation 'com.facebook.android:facebook-android-sdk:4.37.0'
+
+    //Account Kit
+    implementation 'com.facebook.android:account-kit-sdk:4.36.0'
+
+    //For error correction of appcompat-v7:27.1.1
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.browser:browser:1.0.0'
+
+    //Gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
+
+    //Currency picker
+    implementation 'com.github.midorikocak:currency-picker-android:1.1.9'
+
+    //Material icons library
+    implementation 'net.steamcrafted:materialiconlib:1.1.5'
+
+    //Color Picker
+    implementation 'com.github.QuadFlask:colorpicker:0.0.13'
+
+    //Icon Picker
+    implementation 'com.maltaisn:icondialog:2.0.2'
+
+    //Card view
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+
+}
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "774438568215",
+    "firebase_url": "https://mtracker-37c52.firebaseio.com",
+    "project_id": "mtracker-37c52",
+    "storage_bucket": "mtracker-37c52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774438568215:android:280bb1ca113b190b",
+        "android_client_info": {
+          "package_name": "com.example.dream.mtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774438568215-2tdici9mqci4imm6c0b6932u08krsi5o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dream.mtracker",
+            "certificate_hash": "86cba56ffc2768eced2ae29d4c7595c84f76b6b2"
+          }
+        },
+        {
+          "client_id": "774438568215-5r0jhrqchcfm99cotgqpnjh99clj7lpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD-Gm6zNq8hPSSPTLqjhO6LlxZSPXt9K0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774438568215-5r0jhrqchcfm99cotgqpnjh99clj7lpn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

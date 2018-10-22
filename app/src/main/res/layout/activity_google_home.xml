@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GoogleHome">
+
+    <TextView
+        android:id="@+id/phone_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="187dp"
+        android:text="Click to view Profile page" />
+
+    <TextView
+        android:id="@+id/category_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="146dp"
+        android:text="Click to view category page" />
+    <TextView
+        android:id="@+id/home_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Click to view home page" />
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:fontFamily="serif"
+        android:text="Google Log out"
+        android:textAllCaps="false"
+        android:layout_centerInParent="true"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"/>
+
+    <Button
+        android:id="@+id/phone_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:fontFamily="serif"
+        android:text="Phone Log out"
+        android:textAllCaps="false"
+        android:layout_centerInParent="true"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"/>
+</RelativeLayout>

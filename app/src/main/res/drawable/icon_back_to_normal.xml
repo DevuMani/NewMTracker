@@ -1,0 +1,52 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="34dp"
+            android:height="34dp"
+            android:viewportWidth="640"
+            android:viewportHeight="640">
+            <clip-path
+                android:name="mask"
+                android:pathData="M 633.21 321.22 C 633.21 490.73 495.58 628.36 326.07 628.36 C 156.55 628.36 18.92 490.73 18.92 321.22 C 18.92 151.7 156.55 14.07 326.07 14.07 C 495.58 14.07 633.21 151.7 633.21 321.22 Z"/>
+            <group android:name="group_1"/>
+            <path
+                android:name="j1mbl2bsqo"
+                android:pathData="M 516.43 320 C 516.43 428.41 428.41 516.43 320 516.43 C 211.59 516.43 123.57 428.41 123.57 320 C 123.57 211.59 211.59 123.57 320 123.57 C 428.41 123.57 516.43 211.59 516.43 320 Z"
+                android:fillColor="#388E3C"
+                android:strokeWidth="1"/>
+            <group android:name="group_2"/>
+            <path
+                android:name="e3d0xr6gf7"
+                android:pathData="M 467.14 123.57 C 467.14 138.85 454.73 151.25 439.46 151.25 C 424.18 151.25 411.78 138.85 411.78 123.57 C 411.78 108.3 424.18 95.89 439.46 95.89 C 454.73 95.89 467.14 108.3 467.14 123.57 Z"
+                android:fillColor="#388E3C"
+                android:strokeWidth="1"/>
+            <group android:name="group_3"/>
+            <path
+                android:name="bkarfym6l"
+                android:pathData="M 190.92 170.28 C 190.92 180.79 182.39 189.32 171.89 189.32 C 161.38 189.32 152.85 180.79 152.85 170.28 C 152.85 159.78 161.38 151.25 171.89 151.25 C 182.39 151.25 190.92 159.78 190.92 170.28 Z"
+                android:fillColor="#388E3C"
+                android:strokeWidth="1"/>
+            <group android:name="group">
+                <path
+                    android:name="a1u4fg5vul"
+                    android:pathData="M 298.49 302.64 C 298.49 302.92 298.27 303.14 297.99 303.14 C 297.72 303.14 297.49 302.92 297.49 302.64 C 297.49 302.37 297.72 302.14 297.99 302.14 C 298.27 302.14 298.49 302.37 298.49 302.64 Z"
+                    android:fillColor="#388E3C"
+                    android:strokeWidth="1"/>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="mask">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="pathData"
+                android:duration="800"
+                android:valueFrom="M 633.21 321.22 C 633.21 490.73 495.58 628.36 326.07 628.36 C 156.55 628.36 18.92 490.73 18.92 321.22 C 18.92 151.7 156.55 14.07 326.07 14.07 C 495.58 14.07 633.21 151.7 633.21 321.22 Z"
+                android:valueTo="M 298.49 302.64 C 298.49 302.92 298.27 303.14 297.99 303.14 C 297.72 303.14 297.49 302.92 297.49 302.64 C 297.49 302.37 297.72 302.14 297.99 302.14 C 298.27 302.14 298.49 302.37 298.49 302.64 Z"
+                android:valueType="pathType"
+                android:interpolator="@android:interpolator/linear_out_slow_in"/>
+        </aapt:attr>
+    </target>
+</animated-vector>
