@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
 //        String query="create table tb_Reg(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR(30) NOT NULL,phno VARCHAR(10),uname VARCHAR(20),pass VARCHAR(20))";
         String user_table="create table tb_user(user_id INTEGER PRIMARY KEY AUTOINCREMENT,user_name VARCHAR(30),user_phno VARCHAR(10),user_email VARCHAR(20),user_currency VARCHAR(10),user_password VARCHAR(20),user_status INTEGER DEFAULT 0)";
         String type_table="create table tb_type(type_id INTEGER PRIMARY KEY AUTOINCREMENT,type_name VARCHAR(20))";
-        String category_table="create table tb_category(category_id INTEGER PRIMARY KEY AUTOINCREMENT,type_id INTEGER,category_user_name VARCHAR(20),category_name VARCHAR(20),foreground_color VARCHAR(10),background_color VARCHAR(10))";
+        String category_table="create table tb_category(category_id INTEGER PRIMARY KEY AUTOINCREMENT,type_id INTEGER,category_user_name VARCHAR(20),category_name VARCHAR(20),foreground_color VARCHAR(10),status INTEGER)";
         String transaction_table="create table tb_transaction(transaction_id INTEGER PRIMARY KEY AUTOINCREMENT,category_id INTEGER,transaction_amount DOUBLE, transaction_date DATE, transaction_description VARCHAR(50))";
         String currency_table="create table tb_currency(currency_id INTEGER PRIMARY KEY AUTOINCREMENT,currency_name VARCHAR(30),currency_code VARCHAR(10), currency_symbol VARCHAR(5))";
 

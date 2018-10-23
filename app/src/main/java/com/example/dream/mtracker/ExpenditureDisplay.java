@@ -3,8 +3,10 @@ package com.example.dream.mtracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +18,7 @@ import net.steamcrafted.materialiconlib.MaterialIconView;
 import java.util.ArrayList;
 
 public class ExpenditureDisplay extends AppCompatActivity {
-    MaterialIconView iconView;
+    ImageView iconView;
     TextView cat_name,type,amount,date,desc;
     FloatingActionButton del,edit;
 
@@ -108,8 +110,12 @@ public class ExpenditureDisplay extends AppCompatActivity {
             Toast.makeText(this, ""+type_name, Toast.LENGTH_SHORT).show();
 
 
-            MaterialDrawableBuilder.IconValue m=MaterialDrawableBuilder.IconValue.valueOf(category_name);
-            iconView.setIcon(m);
+
+            Resources resources = getResources();
+            final int resourceId = resources.getIdentifier(category_name, "drawable",
+                    getPackageName());
+            iconView.setImageDrawable(resources.getDrawable(resourceId));
+
             cat_name.setText(category_name);
             type.setText(type_name);
             amount.setText(String.format("%s", transaction_amount));

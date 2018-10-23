@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,8 +94,10 @@ public class HomeDetailAdapter extends RecyclerView.Adapter{
 
                     MonthTypeViewHolder monthTypeViewHolder= (MonthTypeViewHolder)holder;//casts holder to monthtypeViewHolder.
                     String icon=m_data.getCat_name();
-                    MaterialDrawableBuilder.IconValue iconValue=MaterialDrawableBuilder.IconValue.valueOf(icon);
-                    monthTypeViewHolder.iconView.setIcon(iconValue);
+                    Resources resources = mContext.getResources();
+                    final int resourceId = resources.getIdentifier(icon, "drawable",
+                            mContext.getPackageName());
+                    monthTypeViewHolder.iconView.setImageDrawable(resources.getDrawable(resourceId));
                     monthTypeViewHolder.desc.setText(m_data.getTransaction_description());
                     if (m_data.getType_id()==1)
                     {
@@ -185,7 +189,7 @@ public class HomeDetailAdapter extends RecyclerView.Adapter{
 
     public class MonthTypeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public MaterialIconView iconView;
+        public ImageView iconView;
         public TextView desc,amount;
         public CardView cardView;
 

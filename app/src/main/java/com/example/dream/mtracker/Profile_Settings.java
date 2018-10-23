@@ -134,6 +134,13 @@ public class Profile_Settings extends AppCompatActivity {
                 }
                 else {
                     dbUpdation(new_name, phone, currency);
+                    SharedPreferences sharedPreferences=getSharedPreferences("User",MODE_PRIVATE);
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putString("Name",new_name);
+                    editor.putString("Phone",phone);
+                    editor.putString("Number",phone);
+                    editor.putString("Currency",currency);
+                    editor.apply();
                 }
 
 

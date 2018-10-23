@@ -4,15 +4,14 @@
     android:layout_height="60dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <net.steamcrafted.materialiconlib.MaterialIconView
+
+    <ImageView
         android:id="@+id/iconView_single_row_iconholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@android:color/transparent"
         android:padding="8dp"
-        app:materialIcon="bell"
-        app:materialIconColor="#000"
-        app:materialIconSize="24dp" />
+        app:srcCompat="@drawable/black_arrow" />
 
 </RelativeLayout>

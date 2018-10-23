@@ -19,7 +19,7 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <net.steamcrafted.materialiconlib.MaterialIconView
+            <ImageView
                 android:id="@+id/expenditure_iconview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -27,9 +27,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:padding="8dp"
-                app:materialIcon="bell"
-                app:materialIconColor="@color/black"
-                app:materialIconSize="24dp" />
+                app:srcCompat="@drawable/black_arrow" />
 
             <TextView
                 android:id="@+id/expenditure_description"

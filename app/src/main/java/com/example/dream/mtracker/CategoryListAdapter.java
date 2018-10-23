@@ -2,6 +2,7 @@ package com.example.dream.mtracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
@@ -49,7 +51,13 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
        final Category_Data c_data= iconList.get(position);
         final AnimatedVectorDrawable iconfill= (AnimatedVectorDrawable) mContext.getDrawable(R.drawable.icon_background_fill);
         final AnimatedVectorDrawable no_iconfill= (AnimatedVectorDrawable) mContext.getDrawable(R.drawable.icon_back_to_normal);
-       MaterialDrawableBuilder.IconValue a=MaterialDrawableBuilder.IconValue.valueOf(c_data.getCategory_name());
+
+        MaterialDrawableBuilder.IconValue a=MaterialDrawableBuilder.IconValue.valueOf(c_data.getCategory_name());
+
+//        Resources resources = mContext.getResources();
+//        final int resourceId = resources.getIdentifier(c_data.category_name, "drawable",
+//                mContext.getPackageName());
+//        holder.iconView.setImageDrawable(resources.getDrawable(resourceId));
 
         holder.iconView.setBackground(iconfill);
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +73,10 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             iconfill.registerAnimationCallback(new Animatable2.AnimationCallback() {
                 @Override
                 public void onAnimationStart(Drawable drawable) {
-                    holder.iconView.setColor(Color.WHITE);
+
+//                    holder.iconView.setColor(Color.WHITE);
+
+
                 }
 
                 @Override
@@ -83,7 +94,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                 no_iconfill.registerAnimationCallback(new Animatable2.AnimationCallback() {
                     @Override
                     public void onAnimationStart(Drawable drawable) {
-                        holder.iconView.setColor(mContext.getResources().getColor(R.color.icon_color));
+
+//                        holder.iconView.setColor(mContext.getResources().getColor(R.color.icon_color));
+
                     }
 
                     @Override
@@ -96,10 +109,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             }
         }
 
-        if(position== getItemCount()-1) {
-            holder.iconView.setColor(mContext.getResources().getColor(R.color.green));
-            holder.iconView.setSizeDp(60);
-        }
+
     }
 
     @Override
@@ -114,7 +124,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
 
-        public MaterialIconView iconView;
+        public ImageView iconView;
         public String symbol;
         View mView;
 

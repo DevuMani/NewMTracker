@@ -279,7 +279,7 @@ public class DBFunction {
         ArrayList<Category_Data> myIconList=new ArrayList<>();
         myIconList.clear();
 
-        String sel="SELECT category_id,category_name,foreground_color,background_color FROM tb_category WHERE type_id="+type_id;
+        String sel="SELECT category_id,category_name FROM tb_category WHERE type_id="+type_id+" and status="+0;
         Cursor cursor=dbHelper.selectData(sel);
 
 
@@ -289,14 +289,24 @@ public class DBFunction {
 
             c_data.setCategory_id(cursor.getInt(0));
             c_data.setCategory_name(cursor.getString(1));
-            c_data.setForeground_color(cursor.getString(2));
-            c_data.setBackground_color(cursor.getString(3));
-
 
             myIconList.add(c_data);
 
         }
+        String sel1="SELECT category_id,category_name FROM tb_category WHERE type_id="+3+" and status="+0;
+        Cursor cursor1=dbHelper.selectData(sel1);
 
+
+        while(cursor1.moveToNext()) {
+
+            c_data = new Category_Data();
+
+            c_data.setCategory_id(cursor1.getInt(0));
+            c_data.setCategory_name(cursor1.getString(1));
+
+            myIconList.add(c_data);
+
+        }
 
 
 
@@ -307,61 +317,189 @@ public class DBFunction {
 
     public void setIconName() {
 
-//        int type_id=1;//income
-////        int type_id=2;//expense
-//        String category_name="FOOD";
-//        String color="#4FC3F7";
+        String expense_category_used[]={"category_groceries","category_car","category_clothes","category_entertainment","category_fastfood","category_gift","category_health","category_fuel","category_medicine","category_maintainance","category_toiletries","category_drinks"};
+        String expense_user_name_used[]={"Groceries","Car","Clothes","Entertainment","Fast food","Gift","Health","Fuel","Medicine","Maintainance","Toiletries","Drinks"};
+        String income_color[]={};
 
-//        MaterialDrawableBuilder.IconValue home = MaterialDrawableBuilder.IconValue.FILM;
+        String expense_category_unused[]={"category_cart","category_bills","category_communication","category_eatout","category_cake","category_coffee","category_alcohol","category_ironing","category_laundry","category_dress","category_home","category_makeup","category_pets","category_sports","category_taxi","category_airplane","category_travel","category_train","category_bus","category_account","category_shirt"};
+        String expense_user_name_unused[]={"Cart","Bills","Communication","Eat Out","Cake","Coffee","Alcohol","Ironing","Laundry","Dress","Home","Makeup","Pets","Sports","Taxi","Airplane","Travel","Train","Bus","Account","Shirt"};
+
+
+        String income_category_used[]={"category_deposit","category_salary"};
+        String income_user_name_used[]={"Deposit","Salary"};
+        String expense_color[]={};
+
+        String income_category_unused[]={"category_saving"};
+        String income_user_name_unused[]={"Saving"};
+
+
 
         dbHelper.openConnection();
 
-        String ins_1="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Cart','CART_OUTLINE','#4FC3F7','#B3E5FC')";
-        Log.i("Insert 1",""+dbHelper.insertData(ins_1));
-        String ins_2="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Movie','MOVIE','#7E57C2','#D1C4E9')";
-        Log.i("Insert 2",""+dbHelper.insertData(ins_2));
-        String ins_3="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Food','FOOD','#66BB6A','#C8E6C9')";
-        Log.i("Insert 3",""+dbHelper.insertData(ins_3));
-        String ins_4="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Bills','RECEIPT','#009688','#80CBC4')";
-        Log.i("Insert 4",""+dbHelper.insertData(ins_4));
-        String ins_5="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Snacks','FOOD_FORK_DRINK','#AB47BC','#E1BEE7')";
-        Log.i("Insert 5",""+dbHelper.insertData(ins_5));
-        String ins_6="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Fruits','FOOD_APPLE','#fc0a0a','#ff5959')";
-        Log.i("Insert 6",""+dbHelper.insertData(ins_6));
-        String ins_7="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Clothes','TSHIRT_CREW','#FFEB3B','#FFF59D')";
-        Log.i("Insert 7",""+dbHelper.insertData(ins_7));
-        String ins_8="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Travel','TRAIN','#880E4F','#F06292')";
-        Log.i("Insert 8",""+dbHelper.insertData(ins_8));
-        String ins_9="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Petrol','GAS_STATION','#FF5722','#FFAB91')";
-        Log.i("Insert 9",""+dbHelper.insertData(ins_9));
-        String ins_10="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Kids','BABY_BUGGY','#2E7D32','#81C784')";
-        Log.i("Insert 10",""+dbHelper.insertData(ins_10));
-        String ins_11="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Jewellery','DIAMOND','#FFEB3B','#FFF59D')";
-        Log.i("Insert 11",""+dbHelper.insertData(ins_11));
-        String ins_12="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Coffee','COFFEE_OUTLINE','#795548','#BCAAA4')";
-        Log.i("Insert 12",""+dbHelper.insertData(ins_12));
-        String ins_13="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Account','ACCOUNT_CARD_DETAILS','#006064','#00ACC1')";
-        Log.i("Insert 13",""+dbHelper.insertData(ins_13));
-        String ins_14="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Flight','AIRPLANE','#6A1B9A','#AB47BC')";
-        Log.i("Insert 14",""+dbHelper.insertData(ins_14));
-        String ins_15="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Bank','BANK','#3F51B5','#9FA8DA')";
-        Log.i("Insert 15",""+dbHelper.insertData(ins_15));
-        String ins_16="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(1,'Salary','CASH_MULTIPLE','#1B5E20','#66BB6A')";
-        Log.i("Insert 16",""+dbHelper.insertData(ins_16));
-        String ins_17="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(1,'Savings','COIN','#FFEB3B','#FFF176')";
-        Log.i("Insert 17",""+dbHelper.insertData(ins_17));
 
 
-//Should be inserted for every data
-        String ins_18="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Add','PLUS_CIRCLE_OUTLINE','#388E3C','#388E3C')";
+        for(int i=0;i<income_category_used.length;i++)
+        {
+            Boolean valid=checkCategory(income_category_used[i]);
+
+            if(!valid) {
+
+                String ins = "insert into tb_category(type_id,category_user_name,category_name,foreground_color,status) values(1,'" + income_user_name_used[i] + "','" + income_category_used[i] + "','#000000',0)";
+                Boolean b = dbHelper.insertData(ins);
+
+                if (b == true) {
+                    Toast.makeText(context, "Successfully inserted "+i+" category " + income_category_used[i] + " to tb_category", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Category insertion of"+i+" failed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            else
+            {
+                Toast.makeText(context, "This category is already inserted", Toast.LENGTH_SHORT).show();
+            }
+        }
+        for(int i=0;i<expense_category_used.length;i++)
+        {
+            Boolean valid=checkCategory(expense_category_used[i]);
+
+            if(!valid) {
+
+                String ins = "insert into tb_category(type_id,category_user_name,category_name,foreground_color,status) values(2,'" + expense_user_name_used[i] + "','" + expense_category_used[i] + "','#000000',0)";
+                Boolean b = dbHelper.insertData(ins);
+
+                if (b == true) {
+                    Toast.makeText(context, "Successfully inserted "+i+" category " + expense_category_used[i] + " to tb_category", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Category insertion of"+i+" failed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            else
+            {
+                Toast.makeText(context, "This category is already inserted", Toast.LENGTH_SHORT).show();
+            }
+        }
+        for(int i=0;i<income_category_unused.length;i++)
+        {
+            Boolean valid=checkCategory(income_category_unused[i]);
+
+            if(!valid) {
+
+                String ins = "insert into tb_category(type_id,category_user_name,category_name,foreground_color,status) values(1,'" + income_user_name_unused[i] + "','" + income_category_unused[i] + "','#000000',1)";
+                Boolean b = dbHelper.insertData(ins);
+
+                if (b == true) {
+                    Toast.makeText(context, "Successfully inserted "+i+" category " + income_category_unused[i] + " to tb_category", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Category insertion of"+i+" failed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            else
+            {
+                Toast.makeText(context, "This category is already inserted", Toast.LENGTH_SHORT).show();
+            }
+        }
+        for(int i=0;i<expense_category_unused.length;i++)
+        {
+            Boolean valid=checkCategory(expense_category_unused[i]);
+
+            if(!valid) {
+
+                String ins = "insert into tb_category(type_id,category_user_name,category_name,foreground_color,status) values(2,'" + expense_user_name_unused[i] + "','" + expense_category_unused[i] + "','#000000',1)";
+                Boolean b = dbHelper.insertData(ins);
+
+                if (b == true) {
+                    Toast.makeText(context, "Successfully inserted "+i+" category " + expense_category_unused[i] + " to tb_category", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Category insertion of"+i+" failed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            else
+            {
+                Toast.makeText(context, "This category is already inserted", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        //Should be inserted for every data
+        String ins_18="insert into tb_category(type_id,category_user_name,category_name,foreground_color,status) values(3,'Add','category_plus','#388E3C',0)";
         Log.i("Insert 18",""+dbHelper.insertData(ins_18));
-        String ins_19="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(1,'Add','PLUS_CIRCLE_OUTLINE','#388E3C','#388E3C')";
-        Log.i("Insert 19",""+dbHelper.insertData(ins_19));
+
+//        String ins_1="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Cart','CART_OUTLINE','#4FC3F7','#B3E5FC')";
+//        Log.i("Insert 1",""+dbHelper.insertData(ins_1));
+//        String ins_2="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Movie','MOVIE','#7E57C2','#D1C4E9')";
+//        Log.i("Insert 2",""+dbHelper.insertData(ins_2));
+//        String ins_3="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Food','FOOD','#66BB6A','#C8E6C9')";
+//        Log.i("Insert 3",""+dbHelper.insertData(ins_3));
+//        String ins_4="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Bills','RECEIPT','#009688','#80CBC4')";
+//        Log.i("Insert 4",""+dbHelper.insertData(ins_4));
+//        String ins_5="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Snacks','FOOD_FORK_DRINK','#AB47BC','#E1BEE7')";
+//        Log.i("Insert 5",""+dbHelper.insertData(ins_5));
+//        String ins_6="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Fruits','FOOD_APPLE','#fc0a0a','#ff5959')";
+//        Log.i("Insert 6",""+dbHelper.insertData(ins_6));
+//        String ins_7="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Clothes','TSHIRT_CREW','#FFEB3B','#FFF59D')";
+//        Log.i("Insert 7",""+dbHelper.insertData(ins_7));
+//        String ins_8="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Travel','TRAIN','#880E4F','#F06292')";
+//        Log.i("Insert 8",""+dbHelper.insertData(ins_8));
+//        String ins_9="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Petrol','GAS_STATION','#FF5722','#FFAB91')";
+//        Log.i("Insert 9",""+dbHelper.insertData(ins_9));
+//        String ins_10="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Kids','BABY_BUGGY','#2E7D32','#81C784')";
+//        Log.i("Insert 10",""+dbHelper.insertData(ins_10));
+//        String ins_11="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Jewellery','DIAMOND','#FFEB3B','#FFF59D')";
+//        Log.i("Insert 11",""+dbHelper.insertData(ins_11));
+//        String ins_12="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Coffee','COFFEE_OUTLINE','#795548','#BCAAA4')";
+//        Log.i("Insert 12",""+dbHelper.insertData(ins_12));
+//        String ins_13="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Account','ACCOUNT_CARD_DETAILS','#006064','#00ACC1')";
+//        Log.i("Insert 13",""+dbHelper.insertData(ins_13));
+//        String ins_14="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Flight','AIRPLANE','#6A1B9A','#AB47BC')";
+//        Log.i("Insert 14",""+dbHelper.insertData(ins_14));
+//        String ins_15="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Bank','BANK','#3F51B5','#9FA8DA')";
+//        Log.i("Insert 15",""+dbHelper.insertData(ins_15));
+//        String ins_16="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(1,'Salary','CASH_MULTIPLE','#1B5E20','#66BB6A')";
+//        Log.i("Insert 16",""+dbHelper.insertData(ins_16));
+//        String ins_17="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(1,'Savings','COIN','#FFEB3B','#FFF176')";
+//        Log.i("Insert 17",""+dbHelper.insertData(ins_17));
+
+
+//        //Should be inserted for every data
+//        String ins_18="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(2,'Add','PLUS_CIRCLE_OUTLINE','#388E3C','#388E3C')";
+//        Log.i("Insert 18",""+dbHelper.insertData(ins_18));
+//        String ins_19="insert into tb_category(type_id,category_user_name,category_name,foreground_color,background_color) values(1,'Add','PLUS_CIRCLE_OUTLINE','#388E3C','#388E3C')";
+//        Log.i("Insert 19",""+dbHelper.insertData(ins_19));
 
 
         dbHelper.closeConnection();
 
     }
+
+    private Boolean checkCategory(String code) {
+
+
+        String sel_cuurency="SELECT category_id FROM tb_category WHERE category_name='"+code+"'";
+        Cursor currency_cursor=dbHelper.selectData(sel_cuurency);
+
+        Boolean b=false;
+
+        if(currency_cursor.moveToNext())
+        {
+            b= true;
+        }
+        else
+        {
+            b= false;
+        }
+
+
+        return b;
+
+    }
+
 
     public Boolean expenditureInsert(int transaction_id,int cat_id, String tb_amount, String tb_desc, String tb_date,int update) {
 
@@ -429,7 +567,7 @@ public class DBFunction {
 
 
 //        String sel="SELECT transaction_id,category_id,transaction_amount,transaction_date FROM tb_transaction WHERE strftime('%Y',transaction_date) = strftime('%Y',date('now'))";
-        String sel_income="SELECT t1.transaction_id,t1.category_id,t1.transaction_amount,t1.transaction_date,t2.category_id,t2.type_id, SUM(transaction_amount) AS Tot FROM tb_transaction t1,tb_category t2 WHERE  (strftime('%Y',t1.transaction_date) = '"+year+"'  and t1.category_id=t2.category_id and t2.type_id=1)GROUP BY CAST(strftime('%m',t1.transaction_date) AS VARCHAR(2)) + '-' + CAST(strftime('%Y',t1.transaction_date) AS VARCHAR(4))";
+        String sel_income="SELECT t1.transaction_id,t1.category_id,t1.transaction_amount,t1.transaction_date,t2.category_id,t2.type_id, SUM(transaction_amount) AS Tot FROM tb_transaction t1,tb_category t2 WHERE  (strftime('%Y',t1.transaction_date) = '"+year+"'  and t1.category_id=t2.category_id and t2.type_id=1)GROUP BY CAST(strftime('%m',t1.transaction_date) AS VARCHAR(2)) + '-' + CAST(strftime('%Y',t1.transaction_date) AS VARCHAR(4)) order by t1.transaction_date desc";
 
         Cursor c_income=dbHelper.selectData(sel_income);
 
@@ -468,7 +606,7 @@ public class DBFunction {
 
             }
 
-        String sel_expense="SELECT t1.transaction_id,t1.category_id,t1.transaction_amount,t1.transaction_date,t2.category_id,t2.type_id, SUM(transaction_amount) AS Tot FROM tb_transaction t1,tb_category t2 WHERE  (strftime('%Y',t1.transaction_date) = '"+year+"' and t1.category_id=t2.category_id and t2.type_id=2)GROUP BY CAST(strftime('%m',t1.transaction_date) AS VARCHAR(2)) + '-' + CAST(strftime('%Y',t1.transaction_date) AS VARCHAR(4))";
+        String sel_expense="SELECT t1.transaction_id,t1.category_id,t1.transaction_amount,t1.transaction_date,t2.category_id,t2.type_id, SUM(transaction_amount) AS Tot FROM tb_transaction t1,tb_category t2 WHERE  (strftime('%Y',t1.transaction_date) = '"+year+"' and t1.category_id=t2.category_id and t2.type_id=2)GROUP BY CAST(strftime('%m',t1.transaction_date) AS VARCHAR(2)) + '-' + CAST(strftime('%Y',t1.transaction_date) AS VARCHAR(4)) order by t1.transaction_date desc";
 
         Cursor c_expense=dbHelper.selectData(sel_expense);
 
@@ -738,7 +876,7 @@ public class DBFunction {
 
         ArrayList<Month_Data> month_list=new ArrayList<>();
 
-        String sel="select t1.transaction_id,t1.category_id,t2.category_name,t2.type_id,t1.transaction_amount,t1.transaction_date,t1.transaction_description from tb_transaction t1 ,tb_category t2 where t1.category_id= t2.category_id and (strftime('%Y',t1.transaction_date) = strftime('%Y','"+date+"') and strftime('%m',t1.transaction_date) = strftime('%m','"+date+"')) ";
+        String sel="select t1.transaction_id,t1.category_id,t2.category_name,t2.type_id,t1.transaction_amount,t1.transaction_date,t1.transaction_description from tb_transaction t1 ,tb_category t2 where t1.category_id= t2.category_id and (strftime('%Y',t1.transaction_date) = strftime('%Y','"+date+"') and strftime('%m',t1.transaction_date) = strftime('%m','"+date+"')) order by t1.transaction_date desc ";
         Cursor cursor=dbHelper.selectData(sel);
 
         int transaction_id=0;
@@ -808,7 +946,7 @@ public class DBFunction {
 
         if (status.equalsIgnoreCase("year")) {
 
-            sel = "select t1.category_id,t2.category_name,t1.transaction_date, SUM(transaction_amount) from tb_transaction t1,tb_category t2 where t1.category_id= t2.category_id and strftime('%Y',t1.transaction_date)=strftime('%Y','"+date+"') group by t1.category_id ";
+            sel = "select t1.category_id,t2.category_name,t1.transaction_date, SUM(transaction_amount),t2.type_id  from tb_transaction t1,tb_category t2 where t1.category_id= t2.category_id and strftime('%Y',t1.transaction_date)=strftime('%Y','"+date+"') group by t1.category_id ";
 
         }
         else if (status.equalsIgnoreCase("month"))
