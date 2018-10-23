@@ -256,6 +256,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
                     final SharedPreferences.Editor editor=sharedPreferences.edit();
                     editor.putBoolean("Login",true);
                     editor.putString("Type","phone");
+                    editor.putString("Name","");
 
 
                     //To see account kit user information
@@ -312,6 +313,7 @@ public class  Login extends AppCompatActivity implements View.OnClickListener {
                     SharedPreferences sharedPreferences=getSharedPreferences("User",MODE_PRIVATE);
                     final SharedPreferences.Editor editor=sharedPreferences.edit();
                     editor.putBoolean("Login",true);
+                    editor.putString("Name","");
                     editor.putString("Type","phone");
                     editor.putBoolean("Password",false);
 
