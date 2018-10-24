@@ -28,11 +28,13 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     private Context mContext;
     static int sSelected=-1;
     private ArrayList<Category_Data> iconList;
+    Boolean type;
 
-    public CategoryListAdapter(Context context, ArrayList<Category_Data> iconList) {
+    public CategoryListAdapter(Context context, ArrayList<Category_Data> iconList,Boolean type) {
 
         mContext = context;
         this.iconList = iconList;
+        this.type=type;
 
     }
 
@@ -48,16 +50,17 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
+
        final Category_Data c_data= iconList.get(position);
         final AnimatedVectorDrawable iconfill= (AnimatedVectorDrawable) mContext.getDrawable(R.drawable.icon_background_fill);
         final AnimatedVectorDrawable no_iconfill= (AnimatedVectorDrawable) mContext.getDrawable(R.drawable.icon_back_to_normal);
 
-        MaterialDrawableBuilder.IconValue a=MaterialDrawableBuilder.IconValue.valueOf(c_data.getCategory_name());
+//        MaterialDrawableBuilder.IconValue a=MaterialDrawableBuilder.IconValue.valueOf(c_data.getCategory_name());
 
-//        Resources resources = mContext.getResources();
-//        final int resourceId = resources.getIdentifier(c_data.category_name, "drawable",
-//                mContext.getPackageName());
-//        holder.iconView.setImageDrawable(resources.getDrawable(resourceId));
+        Resources resources = mContext.getResources();
+        final int resourceId = resources.getIdentifier(c_data.category_name, "drawable",
+                mContext.getPackageName());
+        holder.iconView.setImageDrawable(resources.getDrawable(resourceId));
 
         holder.iconView.setBackground(iconfill);
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +77,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                 @Override
                 public void onAnimationStart(Drawable drawable) {
 
-//                    holder.iconView.setColor(Color.WHITE);
+                    holder.iconView.setColorFilter(Color.WHITE);
 
 
                 }
@@ -95,7 +98,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                     @Override
                     public void onAnimationStart(Drawable drawable) {
 
-//                        holder.iconView.setColor(mContext.getResources().getColor(R.color.icon_color));
+                        holder.iconView.setColorFilter(mContext.getResources().getColor(R.color.icon_color));
 
                     }
 

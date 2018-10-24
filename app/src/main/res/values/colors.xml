@@ -18,5 +18,6 @@
     <color name="green">#388E3C</color>
     <color name="black">#000000</color>
     <color name="red">#800000</color>
+    <color name="switch_red">#fc0a0a</color>
 
 </resources>

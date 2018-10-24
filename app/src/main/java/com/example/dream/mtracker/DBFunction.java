@@ -22,8 +22,7 @@ public class DBFunction {
 
     HashMap< String,Integer> hmap = new HashMap< String,Integer>();
 
-    DBFunction(Context context)
-    {
+    DBFunction(Context context) {
 
         hmap.put("January",1);
         hmap.put("February",2);
@@ -174,46 +173,7 @@ public class DBFunction {
         dbHelper.closeConnection();
     }
 
-    public void insert_currency() {
-        dbHelper.openConnection();
 
-        String n[]={"Euro","United States Dollar"," British Pound","Japanese Yen","Australian Dollar","India Rupee"};
-        String c[]={"EUR","USD","GBP","JPY","AUD","INR"};
-        String s[]={"€","$","£","¥","$","₹"};
-
-
-
-
-
-
-            for(int i=0;i<n.length;i++)
-            {
-                Boolean valid=check(c[i]);
-
-                if(!valid) {
-
-                        String ins = "insert into tb_currency(currency_name,currency_code,currency_symbol) values('" + n[i] + "','" + c[i] + "','" + s[i] + "')";
-                        Boolean b = dbHelper.insertData(ins);
-
-                        if (b == true) {
-                        Toast.makeText(context, "Successfully inserted "+i+" currency " + c[i] + " to tb_currency", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                        Toast.makeText(context, "Currency insertion of"+i+" failed", Toast.LENGTH_SHORT).show();
-
-                        }
-                }
-                else
-                {
-                    Toast.makeText(context, "This country is already inserted", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-
-
-
-
-    }
 
     private Boolean check(String code) {
 
@@ -234,7 +194,31 @@ public class DBFunction {
 
     }
 
+
+    private Boolean checkCategory(String code) {
+
+
+        String sel_cuurency="SELECT category_id FROM tb_category WHERE category_name='"+code+"'";
+        Cursor currency_cursor=dbHelper.selectData(sel_cuurency);
+
+        Boolean b=false;
+
+        if(currency_cursor.moveToNext())
+        {
+            b= true;
+        }
+        else
+        {
+            b= false;
+        }
+
+
+        return b;
+
+    }
+
     public Integer fetchTypeID(String type_name) {
+
         dbHelper.openConnection();
         String sel="SELECT type_id FROM tb_type WHERE type_name='"+type_name+"'";
         Cursor type=dbHelper.selectData(sel);
@@ -271,7 +255,7 @@ public class DBFunction {
         return cat_id;
     }
 
-    public ArrayList<Category_Data> categoryFetch(int type_id) {
+    public ArrayList<Category_Data> categoryFetch(int type_id,String status) {
 
         dbHelper.openConnection();
 
@@ -279,41 +263,120 @@ public class DBFunction {
         ArrayList<Category_Data> myIconList=new ArrayList<>();
         myIconList.clear();
 
-        String sel="SELECT category_id,category_name FROM tb_category WHERE type_id="+type_id+" and status="+0;
-        Cursor cursor=dbHelper.selectData(sel);
+        if(status.equalsIgnoreCase("old")) {
+
+            String sel = "SELECT category_id,category_name FROM tb_category WHERE type_id=" + type_id + " and status=" + 0;
+            Cursor cursor = dbHelper.selectData(sel);
 
 
-        while(cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
 
-            c_data = new Category_Data();
+                c_data = new Category_Data();
 
-            c_data.setCategory_id(cursor.getInt(0));
-            c_data.setCategory_name(cursor.getString(1));
+                c_data.setCategory_id(cursor.getInt(0));
+                c_data.setCategory_name(cursor.getString(1));
 
-            myIconList.add(c_data);
+                myIconList.add(c_data);
+
+            }
+            String sel1 = "SELECT category_id,category_name FROM tb_category WHERE type_id=" + 3 + " and status=" + 0;
+            Cursor cursor1 = dbHelper.selectData(sel1);
+
+
+            while (cursor1.moveToNext()) {
+
+                c_data = new Category_Data();
+
+                c_data.setCategory_id(cursor1.getInt(0));
+                c_data.setCategory_name(cursor1.getString(1));
+
+                myIconList.add(c_data);
+
+            }
+
 
         }
-        String sel1="SELECT category_id,category_name FROM tb_category WHERE type_id="+3+" and status="+0;
-        Cursor cursor1=dbHelper.selectData(sel1);
+        else  if(status.equalsIgnoreCase("new")) {
+
+            String sel = "SELECT category_id,category_name FROM tb_category WHERE type_id=" + type_id + " and status=" + 1;
+            Cursor cursor = dbHelper.selectData(sel);
 
 
-        while(cursor1.moveToNext()) {
+            while (cursor.moveToNext()) {
 
-            c_data = new Category_Data();
+                c_data = new Category_Data();
 
-            c_data.setCategory_id(cursor1.getInt(0));
-            c_data.setCategory_name(cursor1.getString(1));
+                c_data.setCategory_id(cursor.getInt(0));
+                c_data.setCategory_name(cursor.getString(1));
 
-            myIconList.add(c_data);
+                myIconList.add(c_data);
+
+            }
+
+
 
         }
-
-
 
         dbHelper.closeConnection();
 
         return myIconList;
     }
+
+    public void insert_currency() {
+        dbHelper.openConnection();
+
+        String n[]={"Euro","United States Dollar"," British Pound","Japanese Yen","Australian Dollar","India Rupee"};
+        String c[]={"EUR","USD","GBP","JPY","AUD","INR"};
+        String s[]={"€","$","£","¥","$","₹"};
+
+
+
+        for(int i=0;i<n.length;i++)
+        {
+            Boolean valid=check(c[i]);
+
+            if(!valid) {
+
+                String ins = "insert into tb_currency(currency_name,currency_code,currency_symbol) values('" + n[i] + "','" + c[i] + "','" + s[i] + "')";
+                Boolean b = dbHelper.insertData(ins);
+
+                if (b == true) {
+                    Toast.makeText(context, "Successfully inserted "+i+" currency " + c[i] + " to tb_currency", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Currency insertion of"+i+" failed", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            else
+            {
+                Toast.makeText(context, "This country is already inserted", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+
+
+
+    }
+
+//    public void drop()
+//    {
+//        dbHelper.openConnection();
+//        String del="Drop table tb_category";
+//        Boolean b=dbHelper.insertData(del);
+//        if(b)
+//        {
+//            Toast.makeText(context, "Successfully dropped table", Toast.LENGTH_SHORT).show();
+//        }
+//        else
+//        {
+//            Toast.makeText(context, "Couldn't dropped table", Toast.LENGTH_SHORT).show();
+//
+//        }
+//
+//
+//    }
 
     public void setIconName() {
 
@@ -329,7 +392,7 @@ public class DBFunction {
         String income_user_name_used[]={"Deposit","Salary"};
         String expense_color[]={};
 
-        String income_category_unused[]={"category_saving"};
+        String income_category_unused[]={"category_savings"};
         String income_user_name_unused[]={"Saving"};
 
 
@@ -478,33 +541,9 @@ public class DBFunction {
 
     }
 
-    private Boolean checkCategory(String code) {
-
-
-        String sel_cuurency="SELECT category_id FROM tb_category WHERE category_name='"+code+"'";
-        Cursor currency_cursor=dbHelper.selectData(sel_cuurency);
-
-        Boolean b=false;
-
-        if(currency_cursor.moveToNext())
-        {
-            b= true;
-        }
-        else
-        {
-            b= false;
-        }
-
-
-        return b;
-
-    }
-
-
     public Boolean expenditureInsert(int transaction_id,int cat_id, String tb_amount, String tb_desc, String tb_date,int update) {
 
         dbHelper.openConnection();
-
         Boolean b=false;
         if(update==0)
         {
@@ -520,6 +559,10 @@ public class DBFunction {
             b = dbHelper.insertData(upd);
             Log.d("Update",upd);
         }
+
+
+
+
 
         return b;
 
@@ -573,38 +616,39 @@ public class DBFunction {
 
         Log.d("SQL Result Income","Transaction Id      Category ID         Amount      Date");
 
-            while (c_income.moveToNext()) {
+        while (c_income.moveToNext()) {
 
-                Log.d("SQL Result", c_income.getInt(0) + " " + c_income.getInt(1) + " " + c_income.getDouble(2) + " " + c_income.getString(3));
+            Log.d("SQL Result", c_income.getInt(0) + " " + c_income.getInt(1) + " " + c_income.getDouble(2) + " " + c_income.getString(3));
 
-                transaction_id=c_income.getInt(0);
-                income=c_income.getDouble(6);
-                date=c_income.getString(3);
+            transaction_id=c_income.getInt(0);
+            income=c_income.getDouble(6);
+            date=c_income.getString(3);
 
-                SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-                SimpleDateFormat simpleDateFormat= new SimpleDateFormat("MMMM");
-                Date date1=null;
+            SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat simpleDateFormat= new SimpleDateFormat("MMMM");
+            Date date1=null;
 
-                try {
-                   date1 =sdf.parse(date);
-                   month=simpleDateFormat.format(date1);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
-                category_id=c_income.getInt(1);
-                amount=c_income.getDouble(2);
-
-                month_data=new Home_Year_Data();
-                month_data.setTransaction_id(transaction_id);
-                month_data.setIncome(income);
-                month_data.setMonth(month);
-                month_data.setTransaction_date(date);
-                arrayIncome.add(month_data);
-
-
+            try {
+                date1 =sdf.parse(date);
+                month=simpleDateFormat.format(date1);
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+
+
+            category_id=c_income.getInt(1);
+            amount=c_income.getDouble(2);
+
+            month_data=new Home_Year_Data();
+            month_data.setTransaction_id(transaction_id);
+            month_data.setIncome(income);
+            month_data.setMonth(month);
+            month_data.setTransaction_date(date);
+
+            arrayIncome.add(month_data);
+
+
+        }
 
         String sel_expense="SELECT t1.transaction_id,t1.category_id,t1.transaction_amount,t1.transaction_date,t2.category_id,t2.type_id, SUM(transaction_amount) AS Tot FROM tb_transaction t1,tb_category t2 WHERE  (strftime('%Y',t1.transaction_date) = '"+year+"' and t1.category_id=t2.category_id and t2.type_id=2)GROUP BY CAST(strftime('%m',t1.transaction_date) AS VARCHAR(2)) + '-' + CAST(strftime('%Y',t1.transaction_date) AS VARCHAR(4)) order by t1.transaction_date desc";
 
@@ -640,23 +684,12 @@ public class DBFunction {
             month_data.setExpense(expense);
             month_data.setMonth(month);
             month_data.setTransaction_date(date);
+
             arrayExpense.add(month_data);
 
 
 
         }
-
-//        ArrayList<Home_Year_Data> yearList= new ArrayList<>();
-//
-//        for(int i=0;i<yearList.size();i++)
-//        {
-//            Home_Year_Data m_data= yearList.get(i);
-//            String m_month=m_data.getMonth();
-//            Double m_income=m_data.getIncome();
-//            Double m_expense=m_data.getExpense();
-//            //ni rand array indaku arrayexpense and array income ,mmm
-//
-//        }
 
 
         ArrayList<Home_Year_Data> yearList= new ArrayList<>();
@@ -677,33 +710,25 @@ public class DBFunction {
 
         while(it.hasNext()) {
 
-//        for(Home_Year_Data year_income :  arrayIncome) {
-
             Home_Year_Data year_income=(Home_Year_Data)it.next();
             innerCount = 0;
             year_data = new Home_Year_Data();
 
-//            y_month= year_income.getMonth(); //both months are equal here
-//            month_list.add(y_month);
-//            for (Home_Year_Data year_expense : arrayExpense) {
-
             Iterator<Home_Year_Data> it2 = arrayExpense.iterator();
+
             while(it2.hasNext()) {
                 Home_Year_Data year_expense=(Home_Year_Data)it2.next();
-//                y_date=year_income.getTransaction_date();
-//                y_month= year_income.getMonth(); //both months are equal here
-//                month_list.add(y_month);
 
                 if (year_income.getMonth().equals(year_expense.getMonth())) {
+
                     innerCount++;
+                    y_date=year_income.getTransaction_date();
 
                     y_month = year_income.getMonth();
                     y_income = year_income.getIncome();
                     y_expense = year_expense.getExpense();
 
                     balance = y_income - y_expense;
-
-//                    year_data=new Home_Year_Data();
 
                     year_data.setTransaction_date(y_date);
                     year_data.setMonth(y_month);
@@ -712,10 +737,10 @@ public class DBFunction {
                     year_data.setBalance(balance);
 
 
-                        it.remove();
-                        it2.remove();
-                        yearList.add(year_data);
-                    }
+                    it.remove();
+                    it2.remove();
+                    yearList.add(year_data);
+                }
             }
 
 
@@ -733,13 +758,10 @@ public class DBFunction {
                 year_data.setBalance(balance);
 
 
-                    it.remove();
-
-//                arrayIncome.remove(year_data);
+                it.remove();
 
                 yearList.add(year_data);
 
-//                break;
             }
         }
 
@@ -747,8 +769,6 @@ public class DBFunction {
 
         while(it3.hasNext())
         {
-//        for(Home_Year_Data year_expense: arrayExpense)
-//        {
 
             Home_Year_Data year_expense=(Home_Year_Data)it3.next();
 
@@ -774,7 +794,7 @@ public class DBFunction {
 
 
 
-            dbHelper.closeConnection();
+        dbHelper.closeConnection();
 
         return yearList;
     }
@@ -946,7 +966,7 @@ public class DBFunction {
 
         if (status.equalsIgnoreCase("year")) {
 
-            sel = "select t1.category_id,t2.category_name,t1.transaction_date, SUM(transaction_amount),t2.type_id  from tb_transaction t1,tb_category t2 where t1.category_id= t2.category_id and strftime('%Y',t1.transaction_date)=strftime('%Y','"+date+"') group by t1.category_id ";
+            sel = "select t1.category_id,t2.category_name,t1.transaction_date, SUM(transaction_amount) from tb_transaction t1,tb_category t2 where t1.category_id= t2.category_id and strftime('%Y',t1.transaction_date)=strftime('%Y','"+date+"') group by t1.category_id ";
 
         }
         else if (status.equalsIgnoreCase("month"))
@@ -959,30 +979,123 @@ public class DBFunction {
 
         PieAnualData pieAnualData;
 
-            while (cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
 
-                pieAnualData = new PieAnualData();
+            pieAnualData = new PieAnualData();
 
-                pieAnualData.setCategory_id(cursor.getInt(0));
-                pieAnualData.setCategory_name(cursor.getString(1));
-                pieAnualData.setTransaction_date(cursor.getString(2));
-                pieAnualData.setTotal_amount(cursor.getDouble(3));
-                pieAnualData.setType_id(cursor.getInt(4));
+            pieAnualData.setCategory_id(cursor.getInt(0));
+            pieAnualData.setCategory_name(cursor.getString(1));
+            pieAnualData.setTransaction_date(cursor.getString(2));
+            pieAnualData.setTotal_amount(cursor.getDouble(3));
+            pieAnualData.setType_id(cursor.getInt(4));
 
-                pie_year_list.add(pieAnualData);
+            pie_year_list.add(pieAnualData);
 
 
-            }
+        }
 
-            dbHelper.closeConnection();
+        dbHelper.closeConnection();
 
-            return pie_year_list;
+        return pie_year_list;
 
 
 
 
     }
 
+
+
+
+
+
+    public String searchPhn(String data)
+    {
+        String phn="";
+
+        dbHelper.openConnection();
+
+        String sel="SELECT phno from tb_RegPhn INNER JOIN tb_RegUser ON tb_RegUser.user_id = tb_RegPhn.user_id WHERE tb_RegUser.user_name LIKE '"+data+"'";
+        Cursor cursor = dbHelper.selectData(sel);
+
+        while(cursor.moveToNext())
+        {
+            phn=cursor.getString(0);
+
+            Log.d("DBHelper", "searchPhn: "+ phn);
+        }
+
+        dbHelper.closeConnection();
+
+        return phn;
+    }
+
+
+    public String searchUser(String phn)
+    {
+        String name="";
+
+        dbHelper.openConnection();
+
+        String sel="SELECT user_name FROM tb_RegUser AS user INNER JOIN tb_RegPhn AS phn ON user.user_id = phn.user_id WHERE phn.phno='"+phn+"'";
+        Cursor cursor=dbHelper.selectData(sel);
+        if(cursor.moveToNext())
+        {
+            name=cursor.getString(0);
+        }
+        else
+        {
+            Toast.makeText(context, "Null Phn Cursor", Toast.LENGTH_SHORT).show();
+        }
+
+        dbHelper.closeConnection();
+
+        return name;
+    }
+
+    public void delete() {
+
+        dbHelper.openConnection();
+        String del="delete from tb_currency";
+        if(dbHelper.insertData(del))
+        {
+            Toast.makeText(context, "successfully deleted", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Delete went wrong", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    public ArrayList<Currency_Model> fetchCurrencyList() {
+        dbHelper.openConnection();
+
+        Currency_Model currency_model;
+        ArrayList<Currency_Model> myCurrencyList=new ArrayList<>();
+        myCurrencyList.clear();
+
+        String sel="Select currency_id,currency_name,currency_code,currency_symbol from tb_currency";
+        Cursor c=dbHelper.selectData(sel);
+
+        while(c.moveToNext())
+        {
+            currency_model=new Currency_Model();
+
+            currency_model.setCurrency_id(c.getInt(0));
+            currency_model.setCurrency_name(c.getString(1));
+            currency_model.setCurrency_code(c.getString(2));
+            currency_model.setCurrency_symbol(c.getString(3));
+
+            myCurrencyList.add(currency_model);
+
+        }
+
+
+        dbHelper.closeConnection();
+
+        return myCurrencyList;
+    }
 
     public ArrayList<EditModel> fetchTransactionData(int transaction_id) {
 
@@ -1048,85 +1161,18 @@ public class DBFunction {
         return b;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public void delete() {
+    public Boolean changeCategory(int c_id) {
 
         dbHelper.openConnection();
-        String del="delete from tb_currency";
-        if(dbHelper.insertData(del))
-        {
-            Toast.makeText(context, "successfully deleted", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(context, "Delete went wrong", Toast.LENGTH_SHORT).show();
-        }
+
+        String upd="update tb_category set status="+0+" where category_id="+c_id;
+        Boolean b=dbHelper.insertData(upd);
 
 
-    }
 
-    public ArrayList<Currency_Model> fetchCurrencyList() {
-        dbHelper.openConnection();
-
-        Currency_Model currency_model;
-        ArrayList<Currency_Model> myCurrencyList=new ArrayList<>();
-        myCurrencyList.clear();
-
-        String sel="Select currency_id,currency_name,currency_code,currency_symbol from tb_currency";
-        Cursor c=dbHelper.selectData(sel);
-
-        while(c.moveToNext())
-        {
-            currency_model=new Currency_Model();
-
-            currency_model.setCurrency_id(c.getInt(0));
-            currency_model.setCurrency_name(c.getString(1));
-            currency_model.setCurrency_code(c.getString(2));
-            currency_model.setCurrency_symbol(c.getString(3));
-
-            myCurrencyList.add(currency_model);
-
-        }
 
 
         dbHelper.closeConnection();
-
-        return myCurrencyList;
+        return b;
     }
-
-
-//    public void monthSort()
-//    {
-//        final Comparator<String> dateCompare = new Comparator<String>() {
-//
-//            public int compare(String o1, String o2) {
-//
-//                SimpleDateFormat s = new SimpleDateFormat("MMM");
-//                Date s1 = null;
-//                Date s2 = null;
-//                try {
-//                    s1 = s.parse(o1);
-//                    s2 = s.parse(o2);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                return s1.compareTo(s2);
-//            }
-//        };
-//
-//        Collections.sort(months, dateCompare);
-//
-//    }
-
 }

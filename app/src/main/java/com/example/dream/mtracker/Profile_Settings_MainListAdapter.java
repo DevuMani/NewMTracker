@@ -80,7 +80,10 @@ public class Profile_Settings_MainListAdapter extends RecyclerView.Adapter<Profi
             }
             else if(name.equalsIgnoreCase("new category"))
             {
-
+                Intent intent=new Intent(context,AddCategory.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("type",true);
+                context.startActivity(intent);
             }
             else if(name.equalsIgnoreCase("back up"))
             {

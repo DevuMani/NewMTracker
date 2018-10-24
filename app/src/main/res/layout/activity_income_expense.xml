@@ -49,10 +49,15 @@
                     android:text="Income" />
 
                 <Switch
-                    android:id="@+id/typechoose"
+                    android:id="@+id/expenditure_switch"
+                    android:thumb="@drawable/rectangle_thumb"
+                    android:track="@drawable/rectangle_track"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:theme="@style/SwitchCompatTheme"
+                    android:layout_gravity="center"/>
+
 
                 <TextView
                     android:id="@+id/expense_text"

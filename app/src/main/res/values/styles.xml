@@ -16,5 +16,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SwitchCompatTheme" >
+        <item name="colorControlActivated">@color/red</item>
+        <item name="colorSwitchThumbNormal">@color/green</item>
+    </style>
+
 
 </resources>

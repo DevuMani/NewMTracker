@@ -200,7 +200,7 @@ public class IncomeExpenseActivity extends AppCompatActivity {
         setIconToList();
         gridLayoutManager = new GridLayoutManager(IncomeExpenseActivity.this, 2,GridLayoutManager.HORIZONTAL,false);
 
-        adapter = new CategoryListAdapter(IncomeExpenseActivity.this, myIconList);
+        adapter = new CategoryListAdapter(IncomeExpenseActivity.this, myIconList,data_switch.isChecked());
 
         category_list.setLayoutManager(gridLayoutManager);
         category_list.setAdapter(adapter);
@@ -264,7 +264,7 @@ public class IncomeExpenseActivity extends AppCompatActivity {
         else
         {
 //            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                myIconList=dbFunction.categoryFetch(type_id);
+            myIconList=dbFunction.categoryFetch(type_id,"old");
         }
     }
 

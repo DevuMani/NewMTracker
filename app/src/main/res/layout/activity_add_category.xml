@@ -36,26 +36,64 @@
         android:layout_below="@id/ac_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
         android:layout_gravity="center"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username_text_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
 
-            <EditText
-                android:id="@+id/category_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:ems="10"
-                android:hint="Username" />
+            <TextView
+                android:id="@+id/add_income_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/text_income"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="0.5">
+
+            <Switch
+                android:id="@+id/add_category_switch"
+                android:track="@drawable/rectangle_track"
+                android:thumb="@drawable/rectangle_thumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:theme="@style/SwitchCompatTheme"
+                android:layout_gravity="center"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/add_expense_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/text_expense"/>
+
+        </RelativeLayout>
+
+
+
+
 
 
     </LinearLayout>

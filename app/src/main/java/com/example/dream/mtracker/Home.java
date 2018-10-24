@@ -106,13 +106,13 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         if(myYearData.size()==0)
         {
             HomeYearAdapter adapter = new HomeYearAdapter(this, myYearData);
-            year_list.setBackground(getDrawable(R.drawable.no_transaction_found));
+//            year_list.setBackground(getDrawable(R.drawable.no_transaction_found));
             year_list.setLayoutManager(linearLayoutManager);
             year_list.setAdapter(adapter);
         }
         else {
             HomeYearAdapter adapter = new HomeYearAdapter(this, myYearData);
-            year_list.setBackground(getDrawable(R.drawable.black_arrow));
+//            year_list.setBackground(getDrawable(R.drawable.black_arrow));
             year_list.setLayoutManager(linearLayoutManager);
             year_list.addItemDecoration(new SpacingItemDecoration(10));
             year_list.setAdapter(adapter);
